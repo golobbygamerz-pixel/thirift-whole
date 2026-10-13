@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f1e9">
+  <meta name="description" content="Shop wholesale thrift clothing lots, random bales and sorted vintage apparel for resellers across India.">
+  <title>THRIFT SUPPLY — Wholesale Clothing Lots</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f1e9;
+      --paper: #fffdf8;
+      --ink: #24251f;
+      --muted: #77776d;
+      --line: #dedbd1;
+      --accent: #d8f078;
+      --olive: #606c45;
+      --radius: 15px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    .announcement {
+      padding: 10px 15px;
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244,241,233,.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1240px;
+      min-height: 70px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font: 700 23px "Space Grotesk", sans-serif;
+      letter-spacing: -1.4px;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--olive); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .cart-button, .menu-button {
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 10px 14px;
+      color: var(--ink);
+    }
+
+    .menu-button { display: none; }
+
+    .container { max-width: 1240px; margin: auto; padding: 0 24px; }
+
+    .hero {
+      padding-top: 28px;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      min-height: 520px;
+      gap: 14px;
+    }
+
+    .hero-copy {
+      padding: clamp(28px, 5vw, 66px);
+      background: var(--accent);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin: 22px 0 16px;
+      font: 700 clamp(43px, 6.3vw, 78px)/.94 "Space Grotesk", sans-serif;
+      letter-spacing: -5px;
+    }
+
+    h1 span { color: var(--olive); }
+
+    .hero-copy p {
+      max-width: 370px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: #46483c;
+    }
+
+    .button-dark, .button-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--ink);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform .2s, background .2s;
+    }
+
+    .button-dark { background: var(--ink); color: white; }
+    .button-light { background: transparent; color: var(--ink); }
+    .button-dark:hover, .button-light:hover { transform: translateY(-2px); }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      border-radius: var(--radius);
+      background: #d5d0c4;
+    }
+
+    .hero-image img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+
+    .image-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 8px #333;
+    }
+
+    .trust-strip {
+      margin-top: 14px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .trust-strip span { color: var(--olive); margin-right: 5px; }
+
+    section { padding-top: 90px; }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      margin: 10px 0 0;
+      font: 700 clamp(30px, 4vw, 48px)/1.05 "Space Grotesk", sans-serif;
+      letter-spacing: -2px;
+    }
+
+    .section-heading p {
+      max-width: 330px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .type-card {
+      min-height: 270px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #d9d5cb;
+      color: white;
+    }
+
+    .type-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+
+    .type-card:hover img { transform: scale(1.045); }
+
+    .type-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg,rgba(0,0,0,.76),transparent 78%);
+    }
+
+    .type-content { position: absolute; z-index: 1; bottom: 22px; left: 22px; right: 22px; }
+    .type-content h3 { font: 700 28px "Space Grotesk",sans-serif; margin: 0 0 7px; }
+    .type-content p { font-size: 12px; margin-bottom: 14px; color: #eee; }
+    .type-content a { display: inline-block; background: var(--accent); color: var(--ink); padding: 11px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; }
+
+    .shop-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-input, .filter-select {
+      min-height: 44px;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 0 15px;
+      outline-offset: 3px;
+    }
+
+    .search-input { flex: 1; min-width: 180px; }
+    .filter-select { max-width: 100%; }
+
+    .chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 15px; }
+    .chip { white-space: nowrap; padding: 9px 15px; border: 1px solid var(--line); background: transparent; border-radius: 100px; font-size: 12px; }
+    .chip.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+    .product-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px 14px; }
+
+    .product-card { min-width: 0; }
+
+    .product-image {
+      position: relative;
+      aspect-ratio: .79;
+      background: #e2ded4;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+    .product-card:hover .product-image img { transform: scale(1.035); }
+
+    .product-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--paper);
+      border-radius: 100px;
+      padding: 6px 9px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .product-info { padding: 12px 2px; }
+    .product-info h3 { font-size: 14px; margin: 0 0 6px; }
+    .product-meta { color: var(--muted); font-size: 11px; margin-bottom: 10px; }
+    .product-price { font: 700 19px "Space Grotesk",sans-serif; }
+    .per-piece { color: var(--muted); font-size: 10px; margin-top: 4px; }
+    .product-actions { display: flex; gap: 6px; margin-top: 12px; }
+    .product-actions button { flex: 1; padding: 10px 4px; font-size: 11px; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: white; }
+    .product-actions .details { background: transparent; color: var(--ink); }
+
+    .empty-state { grid-column: 1/-1; padding: 45px 10px; color: var(--muted); text-align: center; }
+
+    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+
+    .how-card { padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); }
+    .step-number { font: 700 38px "Space Grotesk",sans-serif; color: var(--olive); }
+    .how-card h3 { margin: 20px 0 8px; font: 600 19px "Space Grotesk",sans-serif; }
+    .how-card p { color: var(--muted); font-size: 13px; line-height: 1.8; margin: 0; }
+
+    .bulk-banner {
+      margin-top: 90px;
+      padding: clamp(28px,6vw,65px);
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .bulk-banner h2 { font: 700 clamp(32px,5vw,52px)/1.03 "Space Grotesk",sans-serif; letter-spacing: -2px; margin: 12px 0; }
+    .bulk-banner p { max-width: 480px; color: #c7c7bc; font-size: 13px; line-height: 1.8; }
+    .bulk-banner .button-dark { background: var(--accent); color: var(--ink); border-color: var(--accent); white-space: nowrap; }
+
+    footer { margin-top: 90px; padding: 38px 0 100px; border-top: 1px solid var(--line); }
+    .footer-main { display: flex; justify-content: space-between; gap: 25px; }
+    .footer-main p { max-width: 330px; color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; }
+
+    .mobile-bottom { display: none; }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      z-index: 100;
+      transform: translate(-50%,20px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--ink);
+      color: white;
+      padding: 13px 20px;
+      border-radius: 100px;
+      font-size: 12px;
+      transition: .25s;
+      white-space: nowrap;
+    }
+
+    .toast.show { opacity: 1; transform: translate(-50%,0); }
+
+    @media(max-width:850px) {
+      .nav-links { gap: 13px; }
+      .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 12px; }
+      .hero { min-height: 420px; }
+      h1 { letter-spacing: -3px; }
+    }
+
+    @media(max-width:600px) {
+      .announcement { font-size: 9px; letter-spacing: .7px; }
+      .nav { min-height: 62px; padding: 0 16px; }
+      .logo { font-size: 21px; }
+      .nav-links { display: none; }
+      .menu-button { display: inline-block; }
+      .container { padding: 0 15px; }
+      .hero { padding-top: 14px; grid-template-columns: 1fr; gap: 10px; }
+      .hero-copy { padding: 32px 24px; min-height: 350px; }
+      h1 { font-size: clamp(48px,14vw,69px); }
+      .hero-copy p { font-size: 13px; }
+      .hero-image { min-height: 310px; }
+      .trust-strip { padding: 15px 7px; gap: 7px; font-size: 10px; }
+      section { padding-top: 65px; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .section-heading h2 { font-size: 35px; }
+      .type-grid { grid-template-columns: 1fr; }
+      .type-card { min-height: 265px; }
+      .product-grid { gap: 14px 10px; }
+      .product-info h3 { font-size: 13px; }
+      .product-price { font-size: 17px; }
+      .product-tag { top: 7px; left: 7px; font-size: 8px; }
+      .product-actions button { font-size: 10px; }
+      .how-grid { grid-template-columns: 1fr; }
+      .how-card { padding: 21px; }
+      .bulk-banner { margin-top: 65px; flex-direction: column; align-items: flex-start; }
+      .footer-main { flex-direction: column; }
+      .mobile-bottom {
+        position: fixed;
+        z-index: 30;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 5px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(255,253,248,.97);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid var(--line);
+      }
+      .mobile-bottom a { text-align: center; font-size: 10px; color: var(--muted); }
+      .mobile-bottom a span { display: block; font-size: 17px; margin-bottom: 3px; }
+      .toast { bottom: 85px; }
+      footer { padding-bottom: 120px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">WHOLESALE THRIFT LOTS · BULK ORDERS ACROSS INDIA</div>
+
+  <header>
+    <nav class="nav">
+      <a href="#" class="logo">THRIFT<span>.</span>SUPPLY</a>
+
+      <div class="nav-links">
+        <a href="#shop">Shop Lots</a>
+        <a href="#categories">Categories</a>
+        <a href="#how">How It Works</a>
+        <a href="#bulk">Bulk Enquiry</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="cart-button" id="cartButton" type="button">Cart (<span id="cartCount">0</span>)</button>
+        <button class="menu-button" type="button" onclick="document.querySelector('#shop').scrollIntoView()">Shop ↓</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="padding-top:28px">
+      <div class="hero-copy">
+        <div class="eyebrow">Built for independent resellers</div>
+        <h1>GOOD FINDS.<br><span>BULK DEALS.</span></h1>
+        <p>Discover random thrift bales and sorted clothing lots. Find your next stock, build your collection and grow your resale business.</p>
+        <div class="hero-buttons">
+          <a class="button-dark" href="#shop">Explore Bulk Lots ↗</a>
+          <a class="button-light" href="#bulk">Talk to Us</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1100&q=85" alt="Clothing collection" fetchpriority="high">
+        <div class="image-caption">
+          <span>PRE-LOVED. RE-IMAGINED.</span>
+          <span>INDIA · WHOLESALE</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div><span>✳</span> Bulk-First Buying</div>
+      <div><span>✳</span> Mixed & Sorted Lots</div>
+      <div><span>✳</span> Pan-India Enquiries</div>
+    </div>
+
+    <section id="categories">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Find your kind of stock</div>
+          <h2>SHOP YOUR WAY.</h2>
+        </div>
+        <p>Choose ready-packed bales or explore category-sorted stock for your store.</p>
+      </div>
+
+      <div class="type-grid">
+        <article class="type-card">
+          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80" alt="Mixed apparel" loading="lazy">
+          <div class="type-content">
+            <h3>Random Bales</h3>
+            <p>Mixed picks. New discoveries. Bulk quantities.</p>
+            <a href="#shop" data-filter="random">SHOP RANDOM LOTS ↗</a>
+          </div>
+        </article>
+
+        <article class="type-card">
+          <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=80" alt="Denim clothing" loading="lazy">
+          <div class="type-content">
+            <h3>Sorted Lots</h3>
+            <p>Shop by category and build your own stock mix.</p>
+            <a href="#shop" data-filter="sorted">SHOP SORTED LOTS ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">The wholesale selection</div>
+          <h2>FIND YOUR NEXT LOT.</h2>
+        </div>
+        <p>Explore our sample catalogue. Prices and quantities below are placeholders until the seller's real inventory is connected.</p>
+      </div>
+
+      <div class="shop-toolbar">
+        <input class="search-input" type="search" id="searchInput" placeholder="Search clothing lots..." aria-label="Search lots">
+        <select class="filter-select" id="sortSelect" aria-label="Sort lots">
+          <option value="featured">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <div class="chips" id="filterChips">
+        <button class="chip active" data-filter="all">All Lots</button>
+        <button class="chip" data-filter="random">Random Bales</button>
+        <button class="chip" data-filter="sorted">Sorted Lots</button>
+        <button class="chip" data-filter="tees">T-Shirts</button>
+        <button class="chip" data-filter="denim">Denim</button>
+        <button class="chip" data-filter="hoodies">Hoodies</button>
+      </div>
+
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    <section id="how">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Simple from start to dispatch</div>
+          <h2>HOW IT WORKS.</h2>
+        </div>
+        <p>Designed around the way wholesale thrift buying actually works.</p>
+      </div>
+
+      <div class="how-grid">
+        <article class="how-card">
+          <div class="step-number">01</div>
+          <h3>Choose Your Lot</h3>
+          <p>Browse random bales, category-sorted bundles and curated stock. Check piece counts, condition and packing type.</p>
+        </article>
+        <article class="how-card">
+          <div class="step-number">02</div>
+          <h3>Place Your Order</h3>
+          <p>Add available lots to your cart or contact the seller for large-volume orders and custom quotations.</p>
+        </article>
+        <article class="how-card">
+          <div class="step-number">03</div>
+          <h3>Pack & Dispatch</h3>
+          <p>The seller verifies stock, prepares your order and shares dispatch details and tracking when available.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="bulk" class="bulk-banner">
+      <div>
+        <div class="eyebrow">Buying in bigger quantities?</div>
+        <h2>LET'S TALK<br>BULK.</h2>
+        <p>Need multiple bales, a custom category mix or a stock video before ordering? Send an enquiry directly to our team.</p>
+      </div>
+      <a class="button-dark" id="bulkWhatsapp" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-main">
+      <div>
+        <a href="#" class="logo">THRIFT<span>.</span>SUPPLY</a>
+        <p>Wholesale thrift clothing for resellers and bulk buyers across India. Replace this placeholder branding with the seller's actual business details before launch.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#shop">Shop Lots</a>
+        <a href="#how">How It Works</a>
+        <a href="#bulk">Bulk Enquiries</a>
+        <a href="#" id="footerWhatsapp">WhatsApp</a>
+      </div>
+    </div>
+    <div class="container" style="margin-top:30px;color:#77776d;font-size:11px">
+      © <span id="year"></span> THRIFT SUPPLY. All rights reserved.
+      <br><br>Demo catalogue only. Actual stock, prices, payment and delivery need seller configuration.
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom" aria-label="Mobile navigation">
+    <a href="#"><span>⌂</span>Home</a>
+    <a href="#shop"><span>▦</span>Shop</a>
+    <a href="#cartButton"><span>＋</span>Cart <b id="mobileCartCount">0</b></a>
+    <a href="#bulk"><span>↗</span>Enquiry</a>
+  </nav>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // DEMO CATALOGUE: replace these examples with real seller stock.
+    // Prices are illustrative, not live offers.
+    const products = [
+      {
+        id: "R001",
+        name: "Mixed Vintage Bale",
+        type: "random",
+        category: "all",
+        pieces: 50,
+        price: 4999,
+        packing: "Ready-packed",
+        image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80",
+        tag: "RANDOM LOT"
+      },
+      {
+        id: "D001",
+        name: "Vintage Denim Bundle",
+        type: "sorted",
+        category: "denim",
+        pieces: 25,
+        price: 5499,
+        packing: "Ready-packed",
+        image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80",
+        tag: "DENIM"
+      },
+      {
+        id: "T001",
+        name: "Graphic Tee Lot",
+        type: "sorted",
+        category: "tees",
+        pieces: 40,
+        price: 3999,
+        packing: "Made-to-order",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+        tag: "T-SHIRTS"
+      },
+      {
+        id: "H001",
+        name: "Sweatshirt & Hoodie Mix",
+        type: "random",
+        category: "hoodies",
+        pieces: 30,
+        price: 6499,
+        packing: "Made-to-order",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80",
+        tag: "MIXED LOT"
+      },
+      {
+        id: "S001",
+        name: "Casual Shirt Bundle",
+        type: "sorted",
+        category: "all",
+        pieces: 30,
+        price: 4499,
+        packing: "Ready-packed",
+        image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80",
+        tag: "SHIRTS"
+      },
+      {
+        id: "R002",
+        name: "Mixed Reseller Lot",
+        type: "random",
+        category: "all",
+        pieces: 100,
+        price: 8999,
+        packing: "Made-to-order",
+        image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=80",
+        tag: "BULK LOT"
+      },
+      {
+        id: "D002",
+        name: "Denim & Streetwear Mix",
+        type: "sorted",
+        category: "denim",
+        pieces: 40,
+        price: 7999,
+        packing: "Ready-packed",
+        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80",
+        tag: "STREETWEAR"
+      },
+      {
+        id: "T002",
+        name: "Everyday Tee Bundle",
+        type: "sorted",
+        category: "tees",
+        pieces: 50,
+        price: 4999,
+        packing: "Made-to-order",
+        image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=80",
+        tag: "T-SHIRTS"
+      }
+    ];
+
+    // Set the seller's real WhatsApp number before publishing.
+    // Use country code + number, digits only, without the plus sign.
+    const SELLER_WHATSAPP = "";
+
+    let activeFilter = "all";
+    let cart = [];
+
+    const grid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const toast = document.getElementById("toast");
+
+    function formatPrice(value) {
+      return "₹" + value.toLocaleString("en-IN");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    function getWhatsAppUrl(message) {
+      if (!/^[0-9]{10,15}$/.test(SELLER_WHATSAPP)) {
+        showToast("Seller WhatsApp number needs to be configured first.");
+        return null;
+      }
+      return "https://wa.me/" + SELLER_WHATSAPP + "?text=" + encodeURIComponent(message);
+    }
+
+    function openWhatsApp(message) {
+      const url = getWhatsAppUrl(message);
+      if (url) window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function renderProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+
+      let list = products.filter(product => {
+        const matchesFilter =
+          activeFilter === "all" ||
+          product.type === activeFilter ||
+          product.category === activeFilter;
+
+        const matchesSearch =
+          (product.name + " " + product.tag + " " + product.packing)
+          .toLowerCase().includes(query);
+
+        return matchesFilter && matchesSearch;
+      });
+
+      if (sortSelect.value === "low") list.sort((a,b) => a.price - b.price);
+      if (sortSelect.value === "high") list.sort((a,b) => b.price - a.price);
+      if (sortSelect.value === "name") list.sort((a,b) => a.name.localeCompare(b.name));
+
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty-state">No matching lots found. Try another search or category.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(product => `
+        <article class="product-card">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <span class="product-tag">${product.tag}</span>
+          </div>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <div class="product-meta">${product.pieces} pieces · ${product.packing}</div>
+            <div class="product-price">${formatPrice(product.price)}</div>
+            <div class="per-piece">Approx. ${formatPrice(Math.round(product.price/product.pieces))} per piece</div>
+            <div class="product-actions">
+              <button type="button" data-add="${product.id}">Add to Cart +</button>
+              <button type="button" class="details" data-enquire="${product.id}">Enquire</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cartCount").textContent = count;
+      document.getElementById("mobileCartCount").textContent = count;
+    }
+
+    function addToCart(id) {
+      const product = products.find(item => item.id === id);
+      if (!product) return;
+
+      const existing = cart.find(item => item.id === id);
+      if (existing) existing.quantity++;
+      else cart.push({ id, quantity: 1 });
+
+      updateCartCount();
+      showToast(product.name + " added to demo cart.");
+    }
+
+    function showCart() {
+      if (!cart.length) {
+        showToast("Your cart is empty.");
+        return;
+      }
+
+      const lines = cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        return product.name + " × " + item.quantity + " = " + formatPrice(product.price * item.quantity);
+      });
+
+      const total = cart.reduce((sum,item) => {
+        const product = products.find(p => p.id === item.id);
+        return sum + product.price * item.quantity;
+      }, 0);
+
+      const message = "Hello! I want to enquire about these wholesale lots:\n" +
+        lines.join("\n") + "\nSubtotal: " + formatPrice(total) +
+        "\nPlease confirm actual availability, shipping and payment details.";
+
+      if (confirm(lines.join("\n") + "\n\nSubtotal: " + formatPrice(total) +
+          "\n\nOK = Continue to WhatsApp enquiry\nCancel = Keep shopping")) {
+        openWhatsApp(message);
+      }
+    }
+
+    grid.addEventListener("click", event => {
+      const addButton = event.target.closest("[data-add]");
+      const enquiryButton = event.target.closest("[data-enquire]");
+
+      if (addButton) addToCart(addButton.dataset.add);
+
+      if (enquiryButton) {
+        const product = products.find(p => p.id === enquiryButton.dataset.enquire);
+        if (product) {
+          openWhatsApp("Hello! I am interested in " + product.name +
+            " (" + product.pieces + " pieces, " + formatPrice(product.price) +
+            "). Please confirm actual availability, condition and shipping.");
+        }
+      }
+    });
+
+    document.getElementById("filterChips").addEventListener("click", event => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+
+      activeFilter = button.dataset.filter;
+
+      document.querySelectorAll("#filterChips .chip").forEach(chip => {
+        chip.classList.toggle("active", chip === button);
+      });
+
+      renderProducts();
+    });
+
+    document.querySelectorAll(".type-content a[data-filter]").forEach(link => {
+      link.addEventListener("click", () => {
+        activeFilter = link.dataset.filter;
+        document.querySelectorAll("#filterChips .chip").forEach(chip => {
+          chip.classList.toggle("active", chip.dataset.filter === activeFilter);
+        });
+        renderProducts();
+      });
+    });
+
+    searchInput.addEventListener("input", renderProducts);
+    sortSelect.addEventListener("change", renderProducts);
+    document.getElementById("cartButton").addEventListener("click", showCart);
+
+    document.getElementById("bulkWhatsapp").addEventListener("click", event => {
+      event.preventDefault();
+      openWhatsApp("Hello! I am interested in bulk thrift clothing orders. Please share available lots, minimum quantities and wholesale prices.");
+    });
+
+    document.getElementById("footerWhatsapp").addEventListener("click", event => {
+      event.preventDefault();
+      openWhatsApp("Hello! I would like to enquire about wholesale thrift clothing.");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderProducts();
+  </script>
+</body>
+</html>
